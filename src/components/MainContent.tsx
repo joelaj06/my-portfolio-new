@@ -1,11 +1,12 @@
 import Box from "@mui/material/Box/Box";
 import Divider from "@mui/material/Divider/Divider";
-import { stacks } from "../common";
+import { projects, stacks } from "../common";
 import { Avatar, Chip } from "@mui/material";
+import ProjectCard from "./ProjectCard";
 
 const MainContent = () => {
   return (
-    <div className="h-full bg-white border border-gray-300 rounded-md shadow-md p-3">
+    <div className="custom-scroll-container h-full bg-white border border-gray-300 rounded-md shadow-md p-3 overflow-x-hidden overflow-y-scroll">
       <p className="text-xs text-gray-600">jacquah/README.md</p>
       <h1 className="text-2xl font-bold py-2">👋 Hi there, I am Joel!</h1>
       <Divider />
@@ -60,6 +61,16 @@ const MainContent = () => {
                 borderColor: stack.color,
               }}
             />
+          ))}
+        </div>
+      </div>
+      {/* Projects */}
+      <Box m={2} />
+      <div>
+        <h2 className="text-xl font-bold">🚀 Featured Projects</h2>
+        <div className="flex flex-row gap-1 flex-wrap">
+          {projects.map((project, index) => (
+            <ProjectCard project={project} index={index} />
           ))}
         </div>
       </div>

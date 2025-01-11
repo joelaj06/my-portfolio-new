@@ -5,6 +5,25 @@ body {
     font-family: 'Space Grotesk', sans-serif;
     font-size: small;
 }
+
+/* For WebKit browsers (Chrome, Safari) */  
+.custom-scroll-container::-webkit-scrollbar {  
+    width: 5px; /* Width of the scrollbar */  
+  }  
+  
+  .custom-scroll-container::-webkit-scrollbar-track {  
+    background: #f1f1f1; /* Background of the scrollbar track */  
+  }  
+  
+  .custom-scroll-container::-webkit-scrollbar-thumb {  
+    background: #cecece; /* Color of the scrollbar thumb */  
+    outline: none; /* Remove default outline */
+    border-radius: 10px; /* Roundness of the scrollbar thumb */
+  }  
+  
+  .custom-scroll-container::-webkit-scrollbar-thumb:hover {  
+    background: #a09f9f; /* Color of the scrollbar thumb on hover */  
+  }
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

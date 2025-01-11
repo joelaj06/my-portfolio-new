@@ -35,7 +35,7 @@ const SideBar = () => {
           <InsertLinkOutlinedIcon sx={{ width: 20 }} />
           <a
             className="text-sm"
-            href="www.linkedin.com/in/joel-acquah-367702263V"
+            href="https://linkedin.com/in/joel-acquah-367702263V"
           >
             Joel Acquah
           </a>
