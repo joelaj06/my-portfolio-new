@@ -12,7 +12,7 @@ body {
   }  
   
   .custom-scroll-container::-webkit-scrollbar-track {  
-    background: #f1f1f1; /* Background of the scrollbar track */  
+    background: transparent; /* Background of the scrollbar track */  
   }  
   
   .custom-scroll-container::-webkit-scrollbar-thumb {  
@@ -27,3 +27,13 @@ body {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  background-color: #0d1520;
+  color: #ffffff;
+}
+
+body{
+  --secondary-color: #0799c8
+
+}

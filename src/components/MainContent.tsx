@@ -1,79 +1,51 @@
 import Box from "@mui/material/Box/Box";
 import Divider from "@mui/material/Divider/Divider";
-import { projects, stacks } from "../common";
-import { Avatar, Chip } from "@mui/material";
-import ProjectCard from "./ProjectCard";
+import { useState, useRef } from "react";
+import AboutSection from "./AboutSection";
+import GridOverlay from "./GridOverlay";
+import ProjectsSection from "./ProjectsSection";
+import TechStack from "./TechStack";
 
 const MainContent = () => {
+  const [mousePos, setMousePos] = useState({ x: -100, y: -100 });
+  const containerRef = useRef<HTMLDivElement>(null);
+  const radius = 50; // Radius of visible grid area
+  const blurRadius = 50; // Soft edge blur
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (!containerRef.current) return;
+
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    setMousePos({ x, y });
+  };
   return (
-    <div className="custom-scroll-container h-full bg-white border border-gray-300 rounded-md shadow-md p-3 overflow-x-hidden overflow-y-scroll">
+    <div
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      className="relative custom-scroll-container h-full border border-[#0799c8] rounded-md shadow-lg shadow-[#0799c8]/50 p-3 overflow-x-hidden overflow-y-scroll"
+    >
+      <GridOverlay
+        mousePos={mousePos}
+        radius={radius}
+        blurRadius={blurRadius}
+      />
+
+      {/* Main Content */}
       <p className="text-xs text-gray-600">jacquah/README.md</p>
       <h1 className="text-2xl font-bold py-2">👋 Hi there, I am Joel!</h1>
-      <Divider />
+      <Divider color="gray" />
       <Box m={1} />
       <p>🚀 Flutter Specialist | 🎩 Full Stack Developer | 🎯 Problem Solver</p>
       <Box m={2} />
-      {/* About me */}
-      <div>
-        <h2 className="text-xl font-bold">🌟 About Me</h2>
-        <ul className="list-disc pl-6">
-          <li>
-            Currently working on{" "}
-            <a
-              target="_blank"
-              className="text-blue-600 hover:underline"
-              href="https://github.com/joelaj06/auto-manager"
-            >
-              Auto Manager
-            </a>
-          </li>
-          <li>
-            Currently working as a software engineer at{" "}
-            <a
-              target="_blank"
-              className="text-blue-600 hover:underline"
-              href="https://www.appsolinfosystems.com"
-            >
-              Appsol Information Systems
-            </a>
-            .
-          </li>
-          <li>Opened to freelance projects and remote work.</li>
-        </ul>
-      </div>
-      {/* Tech Stack */}
+
+      <AboutSection />
       <Box m={2} />
-      <div>
-        <h2 className="text-xl font-bold">🛠 Tech Stack</h2>
-        <div className="flex flex-row gap-2 p-1">
-          {stacks.map((stack, index) => (
-            <Chip
-              key={index}
-              avatar={<Avatar alt="Natacha" src={stack.image} />}
-              label={stack.name}
-              variant="outlined"
-              sx={{
-                // backgroundColor: stack.color,
-                // color: "white",
-                borderRadius: "6px",
-                height: "1.5rem",
-                paddingBlock: "1.0rem",
-                borderColor: stack.color,
-              }}
-            />
-          ))}
-        </div>
-      </div>
-      {/* Projects */}
+      <TechStack />
       <Box m={2} />
-      <div>
-        <h2 className="text-xl font-bold">🚀 Featured Projects</h2>
-        <div className="flex flex-row gap-1 flex-wrap">
-          {projects.map((project, index) => (
-            <ProjectCard project={project} index={index} />
-          ))}
-        </div>
-      </div>
+      <ProjectsSection />
     </div>
   );
 };

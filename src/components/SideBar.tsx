@@ -16,7 +16,7 @@ const SideBar = () => {
         </p>
       </div>
       <Box m={1} />
-      <Divider />
+      <Divider color="gray" />
       <Box m={1} />
       {/* Address and contacts */}
 
